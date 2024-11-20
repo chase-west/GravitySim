@@ -1,17 +1,19 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.scene.Group;
 
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
-        Label label = new Label("Hello, JavaFX!");
-        StackPane root = new StackPane(label);
+        // Create body object(s)
+        Body physicsBody = new Body();
+
+        // Add the circle to the scene graph
+        Group root = new Group(physicsBody.getCircle());
         Scene scene = new Scene(root, 400, 300);
 
-        primaryStage.setTitle("JavaFX Example");
+        primaryStage.setTitle("Gravity explorer");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
