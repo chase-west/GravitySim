@@ -3,6 +3,7 @@ import javafx.scene.shape.Circle;
 
 public class Body {
     private Circle circle;
+    private float mass;
 
     public Body() {
         // Drawing a Circle
@@ -20,4 +21,14 @@ public class Body {
     public Circle getCircle() {
         return circle;
     }
+
+    public float getMass() {
+        return  this.mass;
+    }
+
+    public void setMass(float mass) {
+        this.mass = mass;
+    }
+
+
 }

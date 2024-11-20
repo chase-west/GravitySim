@@ -8,6 +8,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         // Create body object(s)
         Body physicsBody = new Body();
+        physicsBody.setMass(100);
+        System.out.println(physicsBody.getMass());
 
         // Add the circle to the scene graph
         Group root = new Group(physicsBody.getCircle());
