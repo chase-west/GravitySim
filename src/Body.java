@@ -7,6 +7,8 @@ public class Body {
     private float mass;
     private float xLocation;
     private float yLocation;
+    private  float  xVelocity;
+    private float yVelocity;
 
     public static final double GRAVITATIONAL_CONSTANT = 6.67430e-11;
 
@@ -35,6 +37,31 @@ public class Body {
     public float getMass() {
         return this.mass;
     }
+
+    public void setPosition(float xPos, float yPos) {
+        this.xLocation = xPos;
+        this.yLocation = yPos;
+        circle.setCenterX(this.xLocation);
+        circle.setCenterY(this.yLocation);
+    }
+
+    public void updatePosition() {
+        this.xLocation += this.xVelocity;
+        this.yLocation += this.yVelocity;
+
+        // Update the circle's position
+        circle.setCenterX(this.xLocation);
+        circle.setCenterY(this.yLocation);
+    }
+
+    public float[] getVelocity() {
+        return new float[] {this.xVelocity, this.yVelocity};
+    }
+    public void setVelocity(float xVelocity, float yVelocity) {
+        this.xVelocity = xVelocity;
+        this.yVelocity = yVelocity;
+    }
+
 
     public void setMass(float mass) {
         this.mass = mass;

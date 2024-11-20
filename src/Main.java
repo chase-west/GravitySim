@@ -10,13 +10,14 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        // Ensure you get correct screen width and height after stage is shown
         double screenWidth = 1000;  // Set to a fixed value for now (or dynamically)
         double screenHeight = 1000; // Set to a fixed value for now (or dynamically)
 
         // Create body object(s)
         Body physicsBody = new Body(screenWidth, screenHeight);
         physicsBody.setMass(100);
+        physicsBody.setPosition(100, 100);
+        physicsBody.setVelocity(2, 2);
 
         // Add the circle to the scene graph
         Group root = new Group(physicsBody.getCircle());
@@ -24,6 +25,9 @@ public class Main extends Application {
 
         primaryStage.setTitle("Gravity explorer");
         primaryStage.setScene(scene);
+
+        UpdateManager updateManager = new UpdateManager(Duration.millis(16), primaryStage, physicsBody);
+        updateManager.start();
 
         // Stop updates when the window closes
         primaryStage.setOnCloseRequest(event -> {
