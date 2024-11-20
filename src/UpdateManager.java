@@ -1,18 +1,18 @@
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Rectangle2D;
-import javafx.stage.Screen;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class UpdateManager {
     private Timeline timeline;
-    private Rectangle2D screenBounds;
-
     private double screenWidth;
     private double screenHeight;
+    private Stage primaryStage; // Reference to the primary stage (window)
 
-    public UpdateManager(Duration interval) {
-        // Initialize bounds
+    public UpdateManager(Duration interval, Stage primaryStage) {
+        this.primaryStage = primaryStage;
+
+        // Initialize with the current window size
         updateScreenBounds();
 
         // Create a timeline that calls the update method
@@ -37,14 +37,13 @@ public class UpdateManager {
     // Main handler for periodic updates
     private void handleUpdates() {
         updateScreenBounds();
-        System.out.println("Screen Width: " + screenWidth + ", Height: " + screenHeight);
+        //System.out.println("Screen Width: " + screenWidth + ", Height: " + screenHeight);
     }
 
-    // Update the screen bounds
+    // Update the screen bounds based on the primaryStage size
     private void updateScreenBounds() {
-        screenBounds = Screen.getPrimary().getVisualBounds();
-        screenWidth = screenBounds.getWidth();
-        screenHeight = screenBounds.getHeight();
+        screenWidth = primaryStage.getWidth();
+        screenHeight = primaryStage.getHeight();
     }
 
     // Getters for current screen dimensions
