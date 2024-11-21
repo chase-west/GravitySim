@@ -7,7 +7,7 @@ public class Body {
     private float mass;
     private float xLocation;
     private float yLocation;
-    private  float  xVelocity;
+    private  float xVelocity;
     private float yVelocity;
 
     public static final double GRAVITATIONAL_CONSTANT = 6.67430e-11;
