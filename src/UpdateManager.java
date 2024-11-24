@@ -2,17 +2,19 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import java.util.List;
+
 
 public class UpdateManager {
     private Timeline timeline;
     private double screenWidth;
     private double screenHeight;
     private Stage primaryStage; // Reference to the primary stage (window)
-    private Body body;
+    private List<Body> bodyList;
 
-    public UpdateManager(Duration interval, Stage primaryStage, Body body) {
+    public UpdateManager(Duration interval, Stage primaryStage, List<Body> bodyList) {
         this.primaryStage = primaryStage;
-        this.body = body;
+        this.bodyList = bodyList;
 
         // Initialize with the current window size
         updateScreenBounds();
@@ -39,8 +41,8 @@ public class UpdateManager {
     // Main handler for periodic updates
     private void handleUpdates() {
         updateScreenBounds();
-        body.updatePosition();
-        checkBounds(body);;
+        updateBodies();
+      //  checkBounds(body);;
         //System.out.println("Screen Width: " + screenWidth + ", Height: " + screenHeight);
     }
 
@@ -63,9 +65,20 @@ public class UpdateManager {
         }
     }
 
+    private void updateBodies() {
+        for (Body body : bodyList) {
+            body.updatePosition();
+            checkBounds(body);
+        }
+    }
+
     // Getters for current screen dimensions
     public double getScreenWidth() {
         return screenWidth;
+    }
+
+    private void calculateGravity(Body body1, Body Body2) {
+
     }
 
     public double getScreenHeight() {
