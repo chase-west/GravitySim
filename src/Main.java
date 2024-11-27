@@ -1,22 +1,21 @@
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.Group;
 import javafx.util.Duration;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
-
-        double screenWidth = 1000;  // Set to a fixed value for now (or dynamically)
-        double screenHeight = 1000; // Set to a fixed value for now (or dynamically)
+        double screenWidth = 1000;  // Set to a fixed value for now
+        double screenHeight = 1000; // Set to a fixed value for now
         List<Body> bodyList = new ArrayList<>();
-
 
         // Create body object(s)
         Body physicsBody = new Body(screenWidth, screenHeight);
@@ -25,13 +24,36 @@ public class Main extends Application {
         physicsBody.setVelocity(2, 2);
         bodyList.add(physicsBody);
 
-        // Add the circle to the scene graph
-        Group root = new Group(physicsBody.getCircle());
-        Scene scene = new Scene(root, screenWidth, screenHeight);
+        Pane root = new Pane(physicsBody.getCircle());
 
-        primaryStage.setTitle("Gravity explorer");
+        // Button to add a physics body
+        Button addBody = new Button("Click to add a physics body");
+        addBody.setOnAction(event -> {
+            // Create a new body and add it to the scene
+            Body newBody = new Body(screenWidth, screenHeight);
+            newBody.setMass(50);
+            newBody.setPosition((float) (Math.random() * screenWidth), (float) (Math.random() * screenHeight));
+            newBody.setVelocity((float) (Math.random() * 4 - 2), (float) (Math.random() * 4 - 2));
+            bodyList.add(newBody);
+
+            // Add the circle to the root
+            root.getChildren().add(newBody.getCircle());
+            System.out.println("Added a new physics body!");
+        });
+
+        // Layout for button and scene
+        VBox buttonLayout = new VBox(10, addBody);
+        buttonLayout.setAlignment(Pos.TOP_CENTER);
+
+        // Add the circle to the scene graph
+        StackPane stackPane = new StackPane(root, buttonLayout);
+        Scene scene = new Scene(stackPane, screenWidth, screenHeight);
+
+        // Setup stage
+        primaryStage.setTitle("Gravity Explorer");
         primaryStage.setScene(scene);
 
+        // Start update manager
         UpdateManager updateManager = new UpdateManager(Duration.millis(16), primaryStage, bodyList);
         updateManager.start();
 
@@ -45,6 +67,5 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
     }
 }
