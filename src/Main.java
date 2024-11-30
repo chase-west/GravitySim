@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Application {
+    private int bodyCount = 0;
+
     @Override
     public void start(Stage primaryStage) {
         double screenWidth = 1000;  // Set to a fixed value for now
@@ -29,6 +31,9 @@ public class Main extends Application {
         // Button to add a physics body
         Button addBody = new Button("Click to add a physics body");
         addBody.setOnAction(event -> {
+
+            bodyCount++; //Increment count for console output (and maybe something else??)
+
             // Create a new body and add it to the scene
             Body newBody = new Body(screenWidth, screenHeight);
             newBody.setMass(50);
@@ -38,7 +43,7 @@ public class Main extends Application {
 
             // Add the circle to the root
             root.getChildren().add(newBody.getCircle());
-            System.out.println("Added a new physics body!");
+            System.out.println("Added a new physics body! Body: " + bodyCount);
         });
 
         // Layout for button and scene
