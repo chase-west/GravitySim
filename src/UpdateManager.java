@@ -41,8 +41,12 @@ public class UpdateManager {
     // Main handler for periodic updates
     private void handleUpdates() {
         updateScreenBounds();
+        calculateGravityBruteForce(bodyList);
         updateBodies();
-      //  checkBounds(body);;
+
+
+
+        // checkBounds(body);;
         //System.out.println("Screen Width: " + screenWidth + ", Height: " + screenHeight);
     }
 
@@ -77,9 +81,12 @@ public class UpdateManager {
         return screenWidth;
     }
 
-    private void calculateGravity(Body body1, Body Body2) {
+    private void calculateGravityBruteForce(List<Body> bodyList) {
+        for (int i = 0; i < bodyList.size(); i++) {
 
+        }
     }
+
 
     public double getScreenHeight() {
         return screenHeight;

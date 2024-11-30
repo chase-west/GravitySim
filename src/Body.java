@@ -9,6 +9,8 @@ public class Body {
     private float yLocation;
     private float xVelocity;
     private float yVelocity;
+    private float DxVelocity; // Instantaneous velocity
+    private float DyVelocity; // Instantaneous velocity
 
     public static final double GRAVITATIONAL_CONSTANT = 6.67430e-11;
 
@@ -57,9 +59,15 @@ public class Body {
     public float[] getVelocity() {
         return new float[] {this.xVelocity, this.yVelocity};
     }
+
     public void setVelocity(float xVelocity, float yVelocity) {
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
+    }
+
+    public void setInstantVelocity(float DxVelocity, float DyVelocity) {
+        this.DxVelocity = DxVelocity;
+        this.DyVelocity = DyVelocity;
     }
 
 
