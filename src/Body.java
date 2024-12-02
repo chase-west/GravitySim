@@ -1,5 +1,6 @@
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+
 import java.util.Random;
 
 public class Body {
@@ -9,10 +10,6 @@ public class Body {
     private float yLocation;
     private float xVelocity;
     private float yVelocity;
-    private float DxVelocity; // Instantaneous velocity
-    private float DyVelocity; // Instantaneous velocity
-
-    public static final double GRAVITATIONAL_CONSTANT = 6.67430e-11;
 
     public Body(double screenWidth, double screenHeight) {
         this.xLocation = randFloat(0, (float) (screenWidth - 10));
@@ -57,7 +54,7 @@ public class Body {
     }
 
     public float[] getVelocity() {
-        return new float[] {this.xVelocity, this.yVelocity};
+        return new float[]{this.xVelocity, this.yVelocity};
     }
 
     public void setVelocity(float xVelocity, float yVelocity) {
@@ -65,18 +62,12 @@ public class Body {
         this.yVelocity = yVelocity;
     }
 
-    public void setInstantVelocity(float DxVelocity, float DyVelocity) {
-        this.DxVelocity = DxVelocity;
-        this.DyVelocity = DyVelocity;
-    }
-
-
     public void setMass(float mass) {
         this.mass = mass;
     }
 
     // Get the current location of the Body
     public float[] getLocation() {
-        return new float[] {this.xLocation, this.yLocation};
+        return new float[]{this.xLocation, this.yLocation};
     }
 }

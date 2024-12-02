@@ -21,9 +21,9 @@ public class Main extends Application {
 
         // Create body object(s)
         Body physicsBody = new Body(screenWidth, screenHeight);
-        physicsBody.setMass(100);
-        physicsBody.setPosition(100, 100);
-        physicsBody.setVelocity(2, 2);
+        physicsBody.setMass(5.9722e24f);
+        physicsBody.setPosition(500, 500);
+        physicsBody.setVelocity(0, 0);
         bodyList.add(physicsBody);
 
         Pane root = new Pane(physicsBody.getCircle());
@@ -36,9 +36,9 @@ public class Main extends Application {
 
             // Create a new body and add it to the scene
             Body newBody = new Body(screenWidth, screenHeight);
-            newBody.setMass(50);
-            newBody.setPosition((float) (Math.random() * screenWidth), (float) (Math.random() * screenHeight));
-            newBody.setVelocity((float) (Math.random() * 4 - 2), (float) (Math.random() * 4 - 2));
+            newBody.setMass(7.347e22f);
+            newBody.setPosition(10, 10);
+            newBody.setVelocity((float) (Math.random() * 2 - 2), (float) (Math.random() * 2 - 2));
             bodyList.add(newBody);
 
             // Add the circle to the root
